@@ -17,7 +17,7 @@ export default function App() {
               path={routeNames.unlock}
               component={() => (
                 <Dapp.Pages.Unlock
-                  callbackRoute={routeNames.dashboard}
+                  callbackRoute={routeNames.multisig}
                   title={`${config.dAppName} Template`}
                   lead="Please select your login method:"
                   ledgerRoute={routeNames.ledger}
@@ -29,7 +29,7 @@ export default function App() {
             <Route
               path={routeNames.ledger}
               component={() => (
-                <Dapp.Pages.Ledger callbackRoute={routeNames.dashboard} />
+                <Dapp.Pages.Ledger callbackRoute={routeNames.multisig} />
               )}
               exact={true}
             />
@@ -37,7 +37,7 @@ export default function App() {
               path={routeNames.walletconnect}
               component={() => (
                 <Dapp.Pages.WalletConnect
-                  callbackRoute={routeNames.dashboard}
+                  callbackRoute={routeNames.multisig}
                   logoutRoute={routeNames.home}
                   title="Maiar Login"
                   lead="Scan the QR code using Maiar"

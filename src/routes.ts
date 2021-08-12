@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Transaction from "./pages/Transaction";
 import Dashboard from "./pages/Dashboard";
 import { dAppName } from "config";
+import Multisig from "./pages/Multisig";
 
 type RouteType = Dapp.RouteType & { title: string };
 
@@ -15,6 +16,7 @@ export const routeNames = {
   unlock: "/unlock",
   ledger: "/ledger",
   walletconnect: "/walletconnect",
+  multisig: "/multisig",
 };
 
 const routes: RouteType[] = [
@@ -33,6 +35,12 @@ const routes: RouteType[] = [
     path: "/transaction",
     title: "Transaction",
     component: Transaction,
+  },
+  {
+    path: "/multisig",
+    title: "Multisig",
+    component: Multisig,
+    authenticatedRoute: true,
   },
 ];
 
