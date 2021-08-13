@@ -52,26 +52,33 @@ const Actions = () => {
     proposeAction("performAction", args);
   }
 
-  var erd_address = 'erd17pupr269rd980g0p.....y69strr5up';
-  var amount = 3.5;
+  const [address, setAddres]  = React.useState(""); //'erd17*upr269rd980g0pu7f7xhdmswyr7hxhds8yt8dm7pg903pyy69strr5u*';
+  const [amount, setAmount] = React.useState("5");;
+
+  const handleChangeAddress = (e: { target: { value: React.SetStateAction<string>; }; }) => setAddres(e.target.value);
+  const handleChangeAmount = (e: { target: { value: React.SetStateAction<string>; }; }) => setAmount(e.target.value);
 
 
   return (
     <div className="d-flex mt-4 justify-content-center">
       <div className="action-btn">
         <input type="text" placeholder="Put the address here..."
-         defaultValue="" 
-         onChange={(event)=>{erd_address = event.target.value}} />
-        <button className="btn" onClick={proposeSendEgld(erd_address,amount.valueOf())}>
+          value={address}
+          onChange={handleChangeAddress} />
+          <input type="text" placeholder="Amount here..."
+          value={amount}
+          onChange={handleChangeAmount} />
+        <button className="btn" onClick={proposeSendEgld(address,+amount)}>
           <FontAwesomeIcon icon={faArrowUp} className="text-primary" />
         </button>
         <a
           href={routeNames.home}
-          onClick={proposeSendEgld(erd_address,amount.valueOf())}
+          onClick={proposeSendEgld(address,+amount)}
           className="text-white text-decoration-none"
         >
-          Stake
+          Propose
         </a>
+        <li>Attention! Check it's <h2>{address}</h2></li>
       </div>
     </div>
   );
