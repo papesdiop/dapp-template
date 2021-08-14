@@ -6,6 +6,11 @@
   "license": "GPL-3.0-or-later",
   "repository": "@elrondnetwork/dapp-template",
   "dependencies": {
+    "formik": "^2.2.9",
+    "rebass": "^4.0.7",
+    "@emotion/react": "^11.4.1",
+    "@rebass/forms": "^4.0.6",
+    "@rebass/preset": "^4.0.5",
     "@elrondnetwork/dapp": "0.0.26",
     "@elrondnetwork/erdjs": "6.4.1",
     "@testing-library/jest-dom": "5.11.4",
@@ -53,6 +58,8 @@
     ]
   },
   "devDependencies": {
+    "@types/rebass": "^4.0.9",
+    "@types/rebass__forms": "^4.0.5",
     "prettier": "2.3.2"
   }
 }
