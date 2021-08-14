@@ -34,8 +34,8 @@ const Transaction = () => {
               {txHash}
             </a>
           </p>
-          <Link to={routeNames.dashboard} className="btn btn-primary mt-3">
-            Back to dashboard
+          <Link to={routeNames.multisig} className="btn btn-primary mt-3">
+            Back to Multisig
           </Link>
         </>
       }
