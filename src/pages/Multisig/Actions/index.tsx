@@ -40,8 +40,9 @@ const Actions = () => {
    */
   const proposeSendEgld = (values: any)  => (e: React.MouseEvent)  => {
     e.preventDefault();
-    console.log(' --- track data : ', values.address, values.amount);
-    const args = [BytesValue.fromHex(new Address(values.address).hex()), new BigUIntValue(Balance.egld(values.amount).valueOf())];
+    const { address, amount} = values;
+    //console.log(' --- track data : ', address, amount);
+    const args = [BytesValue.fromHex(new Address(address).hex()), new BigUIntValue(Balance.egld(amount).valueOf())];
     proposeAction("proposeSendEgld", args);
   }
 
@@ -51,48 +52,43 @@ const Actions = () => {
    * @returns 
    */
   const deposit = (values: any) => (e: React.MouseEvent)  => {
+    e.preventDefault();
     const {amount} = values;
     proposeAction("deposit",[],Balance.egld(amount));
   }
 
-  // // eslint-disable-next-line
-  // const signActionById = (actionId: number) => (e: React.MouseEvent) => {
-  //   e.preventDefault();
-  //   const args = [ new U32Value(actionId)];
-  //   proposeAction("sign", args);
-  // }
+  // eslint-disable-next-line
+  const signActionById = (values: any) => (e: React.MouseEvent) => {
+    e.preventDefault();
+    const { actionId } = values;
+    const args = [ new U32Value(actionId)];
+    proposeAction("sign", args);
+  }
 
-  // // eslint-disable-next-line
-  // const unSignActionById = (actionId: number) => (e: React.MouseEvent) => {
-  //   e.preventDefault();
-  //   const args = [ new U32Value(actionId)];
-  //   proposeAction("unsign", args);
-  // }
+  // eslint-disable-next-line
+  const unSignActionById = (values: any) => (e: React.MouseEvent) => {
+    e.preventDefault();
+    const { actionId } = values;
+    const args = [ new U32Value(actionId)];
+    proposeAction("unsign", args);
+  }
 
-  // // eslint-disable-next-line
-  // const performActionById = (actionId: number) => (e: React.MouseEvent) => {
-  //   e.preventDefault();
-  //   const args = [ new U32Value(actionId)];
-  //   proposeAction("performAction", args);
-  // }
+  // eslint-disable-next-line
+  const performActionById = (values: any) => (e: React.MouseEvent) => {
+    e.preventDefault();
+    const { actionId } = values;
+    const args = [ new U32Value(actionId)];
+    proposeAction("performAction", args);
+  }
 
-  // const [address, setAddres]  = React.useState(""); //'erd17*upr269rd980g0pu7f7xhdmswyr7hxhds8yt8dm7pg903pyy69strr5u*';
-  // const [amount, setAmount] = React.useState("");;
-  // const [actionId, setActionId] = React.useState("");;
-
-
-  // const handleChangeAddress = (e: { target: { value: React.SetStateAction<string>; }; }) => setAddres(e.target.value);
-  // const handleChangeAmount = (e: { target: { value: React.SetStateAction<string>; }; }) => setAmount(e.target.value);
-  // const handleChangeActionId = (e: { target: { value: React.SetStateAction<string>; }; }) => setActionId(e.target.value);
-
-  const validateForm = (values: { address: string; amount: string; }) => {
-    const errors = {address:'', amount:''};
-    if (!values.address) {
-      errors.address = 'Required';
-    }
-    if (!values.amount) {
-      errors.amount = 'Required';
-    }
+  const validateForm = (values: any) => {
+    const errors = {address:'', amount:'', actionId:''};
+    // if (!values.address) {
+    //   errors.address = 'Required';
+    // }
+    // if (!values.amount) {
+    //   errors.amount = 'Required';
+    // }
     return errors;
   }
 
@@ -108,6 +104,7 @@ const Actions = () => {
       initialValues={{
         address: '',
         amount: '',
+        actionId: ''
       }}
       validate={validateForm}
       onSubmit={()=>{}}
@@ -117,12 +114,10 @@ const Actions = () => {
          errors,
          touched,
          handleChange,
-         handleBlur,
-         handleSubmit,
-         isSubmitting,
+         handleBlur
          /* and other goodies */
           }) => (
-            <form onSubmit={handleSubmit}>
+            <Box>
               <Box>
                 <Label htmlFor='address'>Address</Label>
                 <Input
@@ -151,9 +146,9 @@ const Actions = () => {
                 onClick={proposeSendEgld(values)}
                 className="text-white text-decoration-none"
               >
-                Propose
+                Propose-Send-EGLD
               </a>
-
+              &nbsp;&nbsp;&nbsp;
               <a
                 href={routeNames.home}
                 onClick={deposit(values)}
@@ -162,8 +157,44 @@ const Actions = () => {
                 Deposit
               </a>
 
+              <Box>
+                <Label htmlFor='actionId'>ActionId</Label>
+                <Input
+                    type="text"
+                    name="actionId"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.actionId}
+                    id='actionId'/>
+                {errors.actionId && touched.actionId && errors.actionId}
+              </Box>
+
+              <a
+                href={routeNames.home}
+                onClick={signActionById(values)}
+                className="text-white text-decoration-none"
+              >
+                Sign
+              </a>
+              &nbsp;&nbsp;&nbsp;
+              <a
+                href={routeNames.home}
+                onClick={unSignActionById(values)}
+                className="text-white text-decoration-none"
+              >
+                UnSign
+              </a>
+              &nbsp;&nbsp;&nbsp;
+              <a
+                href={routeNames.home}
+                onClick={performActionById(values)}
+                className="text-white text-decoration-none"
+              >
+                Perform-Action
+              </a>
+
               <li>{values.address}</li>
-            </form>
+            </Box>
           )}
     </Formik>
     </Box>
