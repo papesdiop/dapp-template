@@ -9,7 +9,7 @@ const TopInfo = () => {
     account: { balance },
   } = Dapp.useContext();
   return (
-    <div className="text-white" data-testid="topInfo">
+    <div className="" data-testid="topInfo">
       <div className="mb-1">
         <span className="opacity-6 mr-1">Your address:</span>
         <span data-testid="accountAddress">{address}</span>

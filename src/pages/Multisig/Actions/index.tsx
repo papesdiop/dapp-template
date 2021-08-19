@@ -140,22 +140,22 @@ const Actions = () => {
                     id='amount'/>
                 {errors.amount && touched.amount && errors.amount}
               </Box>
-              
-              <a
+              <br/>
+              <Button
                 href={routeNames.home}
                 onClick={proposeSendEgld(values)}
-                className="text-white text-decoration-none"
+                className="bg-button"
               >
                 Propose-Send-EGLD
-              </a>
+              </Button>
               &nbsp;&nbsp;&nbsp;
-              <a
+              <Button 
                 href={routeNames.home}
                 onClick={deposit(values)}
-                className="text-white text-decoration-none"
+                className="bg-button"
               >
                 Deposit
-              </a>
+              </Button>
 
               <Box>
                 <Label htmlFor='actionId'>ActionId</Label>
@@ -168,30 +168,30 @@ const Actions = () => {
                     id='actionId'/>
                 {errors.actionId && touched.actionId && errors.actionId}
               </Box>
-
-              <a
+              <br/>
+              <Button
                 href={routeNames.home}
                 onClick={signActionById(values)}
-                className="text-white text-decoration-none"
+                className="bg-button"
               >
                 Sign
-              </a>
+              </Button>
               &nbsp;&nbsp;&nbsp;
-              <a
+              <Button
                 href={routeNames.home}
                 onClick={unSignActionById(values)}
-                className="text-white text-decoration-none"
+                className="bg-button"
               >
                 UnSign
-              </a>
+              </Button>
               &nbsp;&nbsp;&nbsp;
-              <a
+              <Button
                 href={routeNames.home}
                 onClick={performActionById(values)}
-                className="text-white text-decoration-none"
+                className="bg-button"
               >
                 Perform-Action
-              </a>
+              </Button>
 
               <li>{values.address}</li>
             </Box>
@@ -202,57 +202,3 @@ const Actions = () => {
 };
 
 export default Actions;
-
-/*
-<div className="d-flex mt-4 justify-content-center">
-      <div className="action-btn">
-      <ProductFormAdvanced />
-        Address <input type="text" placeholder="Put the address here..."
-          value={address}
-          onChange={handleChangeAddress} />
-
-          Amount <input type="text" placeholder="Amount here..."
-          value={amount}
-          onChange={handleChangeAmount} />
-
-          ActionID <input type="text" placeholder="Action here..."
-          value={actionId}
-          onChange={handleChangeActionId} />
-
-        <button className="btn" onClick={proposeSendEgld(address,+amount)}>
-          <FontAwesomeIcon icon={faArrowUp} className="text-primary" />
-        </button>
-        <a
-          href={routeNames.home}
-          onClick={proposeSendEgld(address,+amount)}
-          className="text-white text-decoration-none"
-        >
-          Propose
-        </a>
-
-        <a
-          href={routeNames.home}
-          onClick={deposit(+amount)}
-          className="text-white text-decoration-none"
-        >
-          Deposit
-        </a>
-
-        <a
-          href={routeNames.home}
-          onClick={signActionById(+actionId)}
-          className="text-white text-decoration-none"
-        >
-          <b>Sign action with id {actionId||'not assigned'}</b>
-        </a>
-      
-        <a
-          href={routeNames.home}
-          onClick={performActionById(+actionId)}
-          className="text-white text-decoration-none"
-        >
-          <b>Perform action with id {actionId||'not assigned'}</b>
-        </a>
-      </div>
-    </div>
-*/
